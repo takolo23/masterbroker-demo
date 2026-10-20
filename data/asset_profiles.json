@@ -1,0 +1,6 @@
+{
+  "EURUSD": {"enabled": true, "source": "EUR/USD", "minimum_test_trades": 30, "mode": "demo"},
+  "GOLD": {"enabled": false, "source": "XAU/USD", "minimum_test_trades": 30, "mode": "demo"},
+  "BTCUSD": {"enabled": false, "source": "BTC/USD", "minimum_test_trades": 30, "mode": "demo"}
+}
+
