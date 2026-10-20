@@ -1,0 +1,47 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {"label":"MasterBroker: Abrir app de escritorio","type":"shell","command":"${workspaceFolder}\\ABRIR_APP_MASTERBROKER.cmd","presentation":{"reveal":"always","panel":"shared"},"problemMatcher":[]},{
+      "label": "MasterBroker: Ejecutar simulaci�n",
+      "type": "shell",
+      "command": "C:\\Users\\oscar\\AppData\\Local\\Python\\bin\\python.exe",
+      "args": ["${workspaceFolder}\\run_demo.py"],
+      "group": { "kind": "build", "isDefault": true },
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "MasterBroker: Aprender y validar",
+      "type": "shell",
+      "command": "C:\\Users\\oscar\\AppData\\Local\\Python\\bin\\python.exe",
+      "args": ["${workspaceFolder}\\learn.py"],
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "MasterBroker: Iniciar panel y agente",
+      "type": "shell",
+      "command": "${workspaceFolder}\\INICIAR_MASTERBROKER_DEMO.cmd",
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "MasterBroker: Abrir IQ Option",
+      "type": "shell",
+      "command": "cmd",
+      "args": ["/c", "start", "", "https://iqoption.com/pwa/traderoom"],
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "MasterBroker: Verificar sintaxis",
+      "type": "shell",
+      "command": "C:\\Users\\oscar\\AppData\\Local\\Python\\bin\\python.exe",
+      "args": ["-m", "py_compile", "${workspaceFolder}\\run_demo.py", "${workspaceFolder}\\learn.py", "${workspaceFolder}\\agent_service.py", "${workspaceFolder}\\dashboard.py"],
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": []
+    }
+  ]
+}
+
+
