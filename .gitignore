@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Runtime reports, simulated trades and local browser context
+reports/
+
+# User-provided market data and research notes
+data/inbox/
+data/research/
+
+# Local editor and operating-system files
+.vscode/*.log
+.DS_Store
+Thumbs.db
+
