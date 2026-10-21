@@ -11,6 +11,17 @@ Sistema local para analizar velas OHLC, ejecutar simulaciones, validar estrategi
 - Bit�cora de cada decisi�n y operaci�n en SQLite.
 - Adaptador IQ Option sin credenciales y deliberadamente bloqueado para ejecutar dinero real.
 
+## Equipo de agentes demo
+
+El panel y el servicio local incluyen cuatro agentes internos con consenso auditable:
+
+- **Analista de mercado:** revisa la confluencia de la se?al y su direcci?n.
+- **Guardi?n de riesgo:** bloquea una propuesta si no alcanza la confianza configurada o existe una pausa por noticia.
+- **Validador de ejecuci?n demo:** confirma que cualquier entrada sea estrictamente virtual.
+- **Revisor de aprendizaje:** exige registro y validaci?n antes de promover cambios de estrategia.
+
+El coordinador devuelve `HIGHER`, `LOWER` o `NO_OPERAR`; por defecto est? en **solo analizar**, confianza m?nima de **85%** y confirmaci?n del usuario. Su estado se guarda en `reports/agent_team_status.json` y puede leerse desde `http://127.0.0.1:8765/api/agents`.
+
 ## Uso
 
 Requiere Python 3.11+ y no instala paquetes externos.
