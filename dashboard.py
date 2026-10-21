@@ -5,7 +5,7 @@ from pathlib import Path
 from masterbroker.activity import ActivityLog
 
 ROOT=Path(__file__).parent; REPORTS=ROOT/'reports'; UI=ROOT/'operar.html'
-DEFAULT_SETTINGS={'assets':'EUR/USD, GBP/USD','hours':'08:00-18:00','timeframe':'1m, 5m','confidence':'78','payout':'80','maxTrades':'4','risk':'1','losses':'3','onlyAnalyze':False,'askConfirm':True}
+DEFAULT_SETTINGS={'assets':'EUR/USD, GBP/USD','hours':'08:00-18:00','timeframe':'1m, 5m','confidence':'85','payout':'80','maxTrades':'5','risk':'0.5','losses':'3','onlyAnalyze':True,'askConfirm':True}
 
 def read_json(path,fallback):
     try:return json.loads(path.read_text(encoding='utf-8'))
@@ -24,6 +24,7 @@ class Handler(BaseHTTPRequestHandler):
         if route=='/api/status':return self.respond(200,read_json(REPORTS/'agent_status.json',{'mode':'STARTING'}))
         if route=='/api/signal':return self.respond(200,read_json(REPORTS/'paper_signal.json',{'action':'WAIT'}))
         if route=='/api/autopilot':return self.respond(200,read_json(REPORTS/'demo_autopilot_status.json',{'mode':'DEMO_AUTOPILOT','latest_decision':'WAIT'}))
+        if route=='/api/agents':return self.respond(200,read_json(REPORTS/'agent_team_status.json',{'mode':'DEMO_ONLY','live_orders':'DISABLED','proposal':'NO_OPERAR','agents':[]}))
         if route=='/api/activity':return self.respond(200,ActivityLog(REPORTS/'activity.jsonl').recent(8))
         if route=='/api/settings':return self.respond(200,read_json(REPORTS/'bot_settings.json',DEFAULT_SETTINGS))
         if route=='/api/alerts':
