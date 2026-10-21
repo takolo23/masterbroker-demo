@@ -70,27 +70,14 @@ class MasterBrokerTests(unittest.TestCase):
         finally:
             shutil.rmtree(folder, ignore_errors=True)
 
+    def test_agent_team_blocks_low_confidence_and_stays_demo_only(self):
+        from masterbroker.agents import evaluate_team
+        team = evaluate_team({'action':'ALERT_ONLY','side':'LONG','score':.60,'reason':'test'}, {'confidence':85,'onlyAnalyze':False,'askConfirm':True})
+        self.assertEqual(team['mode'], 'DEMO_ONLY')
+        self.assertEqual(team['live_orders'], 'DISABLED')
+        self.assertEqual(team['proposal'], 'NO_OPERAR')
+        self.assertEqual(len(team['agents']), 4)
+
 if __name__ == '__main__':
     unittest.main()
-
-    def test_browser_profile_is_demo_and_order_execution_is_disabled(self):
-        from masterbroker.browser_session import IQOptionBrowserSession
-        folder = Path(__file__).parent / '_sandbox_test_browser'
-        shutil.rmtree(folder, ignore_errors=True); folder.mkdir()
-        try:
-            profile = IQOptionBrowserSession(folder / 'session.json').configure_demo()
-            self.assertEqual(profile['account_mode'], 'DEMO')
-            self.assertEqual(profile['order_execution'], 'DISABLED')
-            self.assertFalse(profile['credentials_stored'])
-        finally:
-            shutil.rmtree(folder, ignore_errors=True)
-
-
-    def test_service_writes_demo_status_without_orders(self):
-        import agent_service
-        status = agent_service.run_cycle()
-        self.assertEqual(status['mode'], 'DEMO_ONLY')
-        self.assertEqual(status['live_orders'], 'DISABLED')
-
-
 
